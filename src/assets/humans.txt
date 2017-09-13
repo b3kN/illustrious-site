@@ -4,12 +4,7 @@
 # TEAM
 
   <name> -- <role> -- <twitter>
-
-# THANKS
-
-  <name>
-  PatrickJS -- @gdi2290
-  AngularClass -- @AngularClass
+  Nicholas Bekeris -- Lead Developer -- N/A
 
 # TECHNOLOGY COLOPHON
 

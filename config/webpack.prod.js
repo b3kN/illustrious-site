@@ -26,8 +26,8 @@ const OptimizeJsPlugin = require('optimize-js-plugin');
  * Webpack Constants
  */
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
 const AOT = process.env.BUILD_AOT || helpers.hasNpmFlag('aot');
 const METADATA = {
   host: HOST,
@@ -199,7 +199,7 @@ module.exports = function (env) {
        * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
        */
       new NormalModuleReplacementPlugin(
-        /(angular2|@angularclass)((\\|\/)|-)hmr/,
+        /(angular2|illustrious)((\\|\/)|-)hmr/,
         helpers.root('config/empty.js')
       ),
 
