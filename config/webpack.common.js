@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 const webpack = require('webpack');
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 const helpers = require('./helpers');
 
 /**
@@ -9,29 +6,18 @@ const helpers = require('./helpers');
  *
  * problem with copy-webpack-plugin
  */
-<<<<<<< HEAD
-const DefinePlugin = require('webpack/lib/DefinePlugin');
-const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-=======
 const AssetsPlugin = require('assets-webpack-plugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
-<<<<<<< HEAD
-
-const buildUtils = require('./build-utils');
-
-=======
 //const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 /**
@@ -46,7 +32,6 @@ const METADATA = {
   HMR: HMR,
   AOT: AOT
 };
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
 /**
  * Webpack configuration
@@ -54,24 +39,6 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
-<<<<<<< HEAD
-  const isProd = options.env === 'production';
-  const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA, options.metadata || {});
-  const ngcWebpackConfig = buildUtils.ngcWebpackSetup(isProd, METADATA);
-  const supportES2015 = buildUtils.supportES2015(METADATA.tsConfigPath);
-
-  const entry = {
-    polyfills: './src/client/polyfills.browser.ts',
-    main:      './src/client/main.browser.ts'
-  };
-
-  Object.assign(ngcWebpackConfig.plugin, {
-    tsConfigPath: METADATA.tsConfigPath,
-    mainPath: entry.main
-  });
-
-  return {
-=======
   isProd = options.env === 'production';
   return {
 
@@ -84,16 +51,12 @@ module.exports = function (options) {
      */
     //cache: false,
 
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     /**
      * The entry point for the bundle
      * Our Angular.js app
      *
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
-<<<<<<< HEAD
-    entry: entry,
-=======
     entry: {
 
       'polyfills': './src/polyfills.browser.ts',
@@ -101,7 +64,6 @@ module.exports = function (options) {
                   './src/main.browser.ts'
 
     },
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
     /**
      * Options affecting the resolving of modules.
@@ -109,10 +71,6 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#resolve
      */
     resolve: {
-<<<<<<< HEAD
-      mainFields: [ ...(supportES2015 ? ['es2015'] : []), 'browser', 'module', 'main' ],
-=======
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
       /**
        * An array of extensions that should be used to resolve modules.
@@ -124,33 +82,8 @@ module.exports = function (options) {
       /**
        * An array of directory names to be resolved to the current directory
        */
-<<<<<<< HEAD
-      modules: [helpers.root('src/client'), helpers.root('node_modules')],
-
-      /**
-       * Add support for lettable operators.
-       *
-       * For existing codebase a refactor is required.
-       * All rxjs operator imports (e.g. `import 'rxjs/add/operator/map'` or `import { map } from `rxjs/operator/map'`
-       * must change to `import { map } from 'rxjs/operators'` (note that all operators are now under that import.
-       * Additionally some operators have changed to to JS keyword constraints (do => tap, catch => catchError)
-       *
-       * Remember to use the `pipe()` method to chain operators, this functinoally makes lettable operators similar to
-       * the old operators usage paradigm.
-       *
-       * For more details see:
-       * https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md#build-and-treeshaking
-       *
-       * If you are not planning on refactoring your codebase (or not planning on using imports from `rxjs/operators`
-       * comment out this line.
-       *
-       * BE AWARE that not using lettable operators will probably result in significant payload added to your bundle.
-       */
-      alias: buildUtils.rxjsAlias(supportES2015)
-=======
       modules: [helpers.root('src'), helpers.root('node_modules')],
 
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     },
 
     /**
@@ -161,9 +94,6 @@ module.exports = function (options) {
     module: {
 
       rules: [
-<<<<<<< HEAD
-        ...ngcWebpackConfig.loaders,
-=======
 
         /**
          * Typescript loader support for .ts
@@ -211,7 +141,6 @@ module.exports = function (options) {
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
         /**
          * To string and css loader support for *.css files (from Angular components)
@@ -221,11 +150,7 @@ module.exports = function (options) {
         {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
-<<<<<<< HEAD
-          exclude: [helpers.root('src/client', 'styles')]
-=======
           exclude: [helpers.root('src', 'styles')]
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         },
 
         /**
@@ -236,11 +161,7 @@ module.exports = function (options) {
         {
           test: /\.scss$/,
           use: ['to-string-loader', 'css-loader', 'sass-loader'],
-<<<<<<< HEAD
-          exclude: [helpers.root('src/client', 'styles')]
-=======
           exclude: [helpers.root('src', 'styles')]
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         },
 
         /**
@@ -252,11 +173,7 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           use: 'raw-loader',
-<<<<<<< HEAD
-          exclude: [helpers.root('src/client/index.html')]
-=======
           exclude: [helpers.root('src/index.html')]
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         },
 
         /**
@@ -284,27 +201,6 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
-<<<<<<< HEAD
-      /**
-       * Plugin: DefinePlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-       */
-      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new DefinePlugin({
-        'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR,
-        'AOT': METADATA.AOT,
-        'process.env.ENV': JSON.stringify(METADATA.ENV),
-        'process.env.NODE_ENV': JSON.stringify(METADATA.ENV),
-        'process.env.HMR': METADATA.HMR
-      }),
-
-=======
       // Use for DLLs
       // new AssetsPlugin({
       //   path: helpers.root('dist'),
@@ -319,7 +215,6 @@ module.exports = function (options) {
        * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
        */
       new CheckerPlugin(),
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       /**
        * Plugin: CommonsChunkPlugin
        * Description: Shares common code between the pages.
@@ -332,20 +227,6 @@ module.exports = function (options) {
         name: 'polyfills',
         chunks: ['polyfills']
       }),
-<<<<<<< HEAD
-
-      new CommonsChunkPlugin({
-        minChunks: Infinity,
-        name: 'inline'
-      }),
-      new CommonsChunkPlugin({
-        name: 'main',
-        async: 'common',
-        children: true,
-        minChunks: 2
-      }),
-
-=======
       /**
        * This enables tree shaking of the vendor modules
        */
@@ -384,7 +265,6 @@ module.exports = function (options) {
            */
         }
       ),
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
       /**
        * Plugin: CopyWebpackPlugin
@@ -395,20 +275,13 @@ module.exports = function (options) {
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-<<<<<<< HEAD
-        { from: 'src/client/assets', to: 'assets' },
-        { from: 'src/client/meta'}
-=======
         { from: 'src/assets', to: 'assets' },
         { from: 'src/meta'}
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       ],
         isProd ? { ignore: [ 'mock-data/**/*' ] } : undefined
       ),
 
       /*
-<<<<<<< HEAD
-=======
        * Plugin: PreloadWebpackPlugin
        * Description: Preload is a web standard aimed at improving
        * performance and granular loading of resources.
@@ -428,7 +301,6 @@ module.exports = function (options) {
       //}),
 
       /*
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       * Plugin: HtmlWebpackPlugin
       * Description: Simplifies creation of HTML files to serve your webpack bundles.
       * This is especially useful for webpack bundles that include a hash in the filename
@@ -437,28 +309,14 @@ module.exports = function (options) {
       * See: https://github.com/ampedandwired/html-webpack-plugin
       */
       new HtmlWebpackPlugin({
-<<<<<<< HEAD
-        template: 'src/client/index.html',
-=======
         template: 'src/index.html',
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         title: METADATA.title,
         chunksSortMode: function (a, b) {
           const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
           return entryPoints.indexOf(a.names[0]) - entryPoints.indexOf(b.names[0]);
         },
         metadata: METADATA,
-<<<<<<< HEAD
-        inject: 'body',
-        xhtml: true,
-        minify: isProd ? {
-          caseSensitive: true,
-          collapseWhitespace: true,
-          keepClosingSlash: true
-        } : false
-=======
         inject: 'body'
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       }),
 
        /**
@@ -469,11 +327,7 @@ module.exports = function (options) {
        * See: https://github.com/numical/script-ext-html-webpack-plugin
        */
       new ScriptExtHtmlWebpackPlugin({
-<<<<<<< HEAD
-        sync: /inline|polyfills|vendor/,
-=======
         sync: /polyfills|vendor/,
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         defaultAttribute: 'async',
         preload: [/polyfills|vendor|main/],
         prefetch: [/chunk/]
@@ -512,9 +366,6 @@ module.exports = function (options) {
        */
       new LoaderOptionsPlugin({}),
 
-<<<<<<< HEAD
-      new ngcWebpack.NgcWebpackPlugin(ngcWebpackConfig.plugin),
-=======
       new ngcWebpack.NgcWebpackPlugin({
         /**
          * If false the plugin is a ghost, it will not perform any action.
@@ -526,7 +377,6 @@ module.exports = function (options) {
         disabled: !AOT,
         tsConfig: helpers.root('tsconfig.webpack.json'),
       }),
->>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
       /**
        * Plugin: InlineManifestWebpackPlugin
