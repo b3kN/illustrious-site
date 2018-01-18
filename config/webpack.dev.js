@@ -1,11 +1,24 @@
 const helpers = require('./helpers');
+<<<<<<< HEAD
+const buildUtils = require('./build-utils');
+const webpackMerge = require('webpack-merge'); // used to merge webpack configs
+const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+const fs = require('fs');
+=======
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 // const webpackMergeDll = webpackMerge.strategy({plugins: 'replace'});
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
 /**
  * Webpack Plugins
  */
+<<<<<<< HEAD
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+const EvalSourceMapDevToolPlugin = require('webpack/lib/EvalSourceMapDevToolPlugin');
+
+=======
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
@@ -32,6 +45,7 @@ const METADATA = {
 
 
 // const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
 /**
  * Webpack configuration
@@ -39,6 +53,21 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
+<<<<<<< HEAD
+  const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+  const HOST = process.env.HOST || '127.0.0.1';
+  const PORT = process.env.PORT || 3010;
+
+  const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA, {
+    host: HOST,
+    port: PORT,
+    ENV: ENV,
+    HMR: helpers.hasProcessFlag('hot'),
+    PUBLIC: process.env.PUBLIC_DEV || 'box.b3kndev.com'
+  });
+
+  return webpackMerge(commonConfig({ env: ENV, metadata: METADATA  }), {
+=======
   return webpackMerge(commonConfig({env: ENV}), {
 
     /**
@@ -49,6 +78,7 @@ module.exports = function (options) {
      */
     devtool: 'cheap-module-source-map',
 
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     /**
      * Options affecting the output of the compilation.
      *
@@ -102,7 +132,11 @@ module.exports = function (options) {
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
+<<<<<<< HEAD
+          include: [helpers.root('src/client', 'styles')]
+=======
           include: [helpers.root('src', 'styles')]
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         },
 
         /**
@@ -113,7 +147,11 @@ module.exports = function (options) {
         {
           test: /\.scss$/,
           use: ['style-loader', 'css-loader', 'sass-loader'],
+<<<<<<< HEAD
+          include: [helpers.root('src/client', 'styles')]
+=======
           include: [helpers.root('src', 'styles')]
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
         },
 
       ]
@@ -121,6 +159,13 @@ module.exports = function (options) {
     },
 
     plugins: [
+<<<<<<< HEAD
+      new EvalSourceMapDevToolPlugin({
+        moduleFilenameTemplate: '[resource-path]',
+        sourceRoot: 'webpack:///'
+      }),
+
+=======
 
       /**
        * Plugin: DefinePlugin
@@ -186,13 +231,18 @@ module.exports = function (options) {
       //   { filepath: helpers.root(`dll/${DllBundlesPlugin.resolveFile('vendor')}`) }
       // ]),
 
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       /**
        * Plugin: NamedModulesPlugin (experimental)
        * Description: Uses file names as module name.
        *
        * See: https://github.com/webpack/webpack/commit/a04ffb928365b19feb75087c63f13cadfc08e1eb
        */
+<<<<<<< HEAD
+      new NamedModulesPlugin(),
+=======
       // new NamedModulesPlugin(),
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)
@@ -201,6 +251,12 @@ module.exports = function (options) {
        */
       new LoaderOptionsPlugin({
         debug: true,
+<<<<<<< HEAD
+        options: { }
+      }),
+
+      // TODO: HMR
+=======
         options: {
 
         }
@@ -208,6 +264,7 @@ module.exports = function (options) {
 
       new HotModuleReplacementPlugin()
 
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     ],
 
     /**
@@ -222,7 +279,11 @@ module.exports = function (options) {
       port: METADATA.port,
       host: METADATA.host,
       hot: METADATA.HMR,
+<<<<<<< HEAD
+      public: METADATA.PUBLIC,
+=======
       public: METADATA.public,
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       historyApiFallback: true,
       watchOptions: {
         // if you're using Docker you may need this
@@ -230,6 +291,18 @@ module.exports = function (options) {
         // poll: 1000,
         ignored: /node_modules/
       },
+<<<<<<< HEAD
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+      },
+      https: {
+        cert: fs.readFileSync("/etc/nginx/ssl/illustrious.crt"),
+        key: fs.readFileSync("/etc/nginx/ssl/illustrious.key")
+      },
+=======
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
       /**
       * Here you can access the Express app object and add your own custom middleware to it.
       *

@@ -7,7 +7,10 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+<<<<<<< HEAD
+=======
     "noEmit": true,
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     "noEmitHelpers": true,
     "importHelpers": true,
     "strictNullChecks": false,
@@ -15,7 +18,11 @@
       "es2015",
       "dom"
     ],
+<<<<<<< HEAD
+    "baseUrl": "./src/client",
+=======
     "baseUrl": ".",
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     "paths": {
       "@angular/*": ["node_modules/@angular/*"]
     },
@@ -33,12 +40,16 @@
     "src/**/*.spec.ts",
     "src/**/*.e2e.ts"
   ],
+<<<<<<< HEAD
+  "angularCompilerOptions": {
+=======
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
   },
   "angularCompilerOptions": {
     "genDir": "./compiled",
+>>>>>>> d8b7c194a7a89090e4de7db1421f10b4f229b825
     "skipMetadataEmit": true
   },
   "compileOnSave": false,
