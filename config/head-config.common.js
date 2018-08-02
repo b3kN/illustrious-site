@@ -43,8 +43,7 @@ module.exports = {
     /**
      * <link> tags for a Web App Manifest
      */
-    { rel: 'manifest', href: '/assets/manifest.json' },
-    { rel: 'stylesheet', type:'text/css', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' }
+    { rel: 'manifest', href: '/assets/manifest.json' }
   ],
   meta: [
     { name: 'msapplication-TileColor', content: '#00bcd4' },

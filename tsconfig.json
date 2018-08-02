@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -15,9 +15,9 @@
       "dom",
       "es6"
     ],
-    "baseUrl": "./src/server",
+    "baseUrl": "./src",
     "paths": {
-      "@angular/*": ["node_modules/@angular/*"]
+      "@angular/*": [ "node_modules/@angular/*" ]
     },
     "typeRoots": [
       "node_modules/@types"
@@ -26,7 +26,6 @@
       "hammerjs",
       "jasmine",
       "node",
-      "source-map",
       "uglify-js",
       "webpack"
     ]

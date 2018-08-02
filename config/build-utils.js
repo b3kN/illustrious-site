@@ -3,8 +3,11 @@ const path = require('path');
 const fs = require('fs');
 const helpers = require('./helpers');
 
+const APP_COMMON_CONFIG = require('./config.common.json');
+
 const DEFAULT_METADATA = {
-  title: 'Angular Web App from @b3kN',
+  title: APP_COMMON_CONFIG.title,
+  description: APP_COMMON_CONFIG.description,
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
@@ -43,10 +46,10 @@ function getEnvFile(suffix) {
     return;
   }
 
-  let fileName = helpers.root(`src/client/environments/environment${suffix}.ts`);
+  let fileName = helpers.root(`src/environments/environment${suffix}.ts`);
   if (fs.existsSync(fileName)) {
     return fileName;
-  } else if (fs.existsSync(fileName = helpers.root('src/client/environments/environment.ts'))) {
+  } else if (fs.existsSync(fileName = helpers.root('src/environments/environment.ts'))) {
     console.warn(`Could not find environment file with suffix ${suffix}, loading default environment file`);
     return fileName;
   } else {
@@ -75,7 +78,7 @@ function ngcWebpackSetup(prod, metadata) {
     metadata = DEFAULT_METADATA;
   }
 
-  const buildOptimizer = prod;
+  const buildOptimizer = prod && metadata.AOT;
   const sourceMap = true; // TODO: apply based on tsconfig value?
   const ngcWebpackPluginOptions = {
     skipCodeGeneration: !metadata.AOT,
@@ -85,7 +88,7 @@ function ngcWebpackSetup(prod, metadata) {
   const environment = getEnvFile(metadata.envFileSuffix);
   if (environment) {
     ngcWebpackPluginOptions.hostReplacementPaths = {
-      [helpers.root('src/client/environments/environment.ts')]: environment
+      [helpers.root('src/environments/environment.ts')]: environment
     }
   }
 
@@ -106,7 +109,7 @@ function ngcWebpackSetup(prod, metadata) {
   const loaders = [
     {
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      use: metadata.AOT && buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
+      use: buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
     },
     ...buildOptimizer
       ? [ { test: /\.js$/, use: [ buildOptimizerLoader ] } ]
