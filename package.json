@@ -54,7 +54,7 @@
     "server": "npm run server:dev",
     "start:prod:hmr": "cross-env ANGULAR_CONF_FILE=./config.prod.json npm run server:dev:hmr",
     "start:hmr": "npm run server:dev:hmr",
-    "start": "npm run server:dev",
+    "start": "npm run server:dev:hmr",
     "start:aot": "npm run server:aot:dev",
     "test": "karma start",
     "test:ci": "karma start --single-run --browsers ChromeTravisCi",
@@ -89,6 +89,7 @@
     "ie-shim": "^0.1.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.1",
+    "rxjs-compat": "^6.3.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

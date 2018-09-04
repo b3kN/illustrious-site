@@ -15,7 +15,7 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
  */
 module.exports = function(options) {
   const ENV = (process.env.ENV = process.env.NODE_ENV = 'development');
-  const HOST = process.env.HOST || 'localhost';
+  const HOST = process.env.HOST || '0.0.0.0';
   const PORT = process.env.PORT || 3000;
 
   const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA, {
@@ -122,6 +122,7 @@ module.exports = function(options) {
       hot: METADATA.HMR,
       public: METADATA.PUBLIC,
       historyApiFallback: true,
+      disableHostCheck: true,
       watchOptions: {
         // if you're using Docker you may need this
         // aggregateTimeout: 300,

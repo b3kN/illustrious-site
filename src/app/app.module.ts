@@ -15,8 +15,6 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 import { DevModuleModule } from './+dev-module';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/auth.guard';
 import { UserService } from './services/user.service';
 
 import '../styles/styles.scss';
@@ -55,8 +53,6 @@ interface StoreType {
     ...environment.showDevModule ? [ DevModuleModule ] : [],
   ],
   providers: [
-    AuthGuard,
-    AuthService,
     UserService,
     environment.ENV_PROVIDERS,
     APP_PROVIDERS
