@@ -2,18 +2,53 @@
 /* This file is for setting global styles  */
 @import 'variables';
 
-nav {
-  margin-top: 16px;
+header {
+  background: #777;
+  display: block;
+  width: 100%;
+  height: 60px;
 }
 
-nav a {
-  background-color: $nav-button-color;
-  color: white;
-  padding: 8px 16px;
-  margin: 8px;
+header .container {
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  height: 100%;
+}
+
+header .container .title-holder {
+  float: left;
+  display: table;
+  height: 100%;
+}
+
+header .container .title-holder .title {
+  display: table-cell;
   vertical-align: middle;
-  line-height: 1.25;
+  font-size: 1.4em;
+  color: #E68920;
+}
+
+header nav {
+  float: right;
+  display: table;
+  height: 100%;
+}
+
+header nav a {
+  color: white;
+  padding: 5px 10px;
   text-align: center;
   text-decoration: none;
-  border-radius: 4px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+header nav a.active {
+  color: #E68920;
+  font-weight: 600;
+  background: rgba(255,255,255,0.1);
+}
+
+.wrapper {
+  background: rgba(0,0,0,0.1);
 }

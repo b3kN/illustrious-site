@@ -11,51 +11,43 @@ export const ROOT_SELECTOR = 'app';
     './app.component.css'
   ],
   template: `
-    <nav>
-      <a [routerLink]=" ['./'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Index
-      </a>
-      <a [routerLink]=" ['./home'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Home
-      </a>
-      <a [routerLink]=" ['./about'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        About
-      </a>
-      <a *ngIf="showDevModule" [routerLink]=" ['./dev-module'] "
-         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        DevModule
-      </a>
-    </nav>
+    <header>
+      <div class="container">
+        <div class="title-holder">
+          <span class="title">Illustrious Online</span>
+        </div>
+        <nav>
+          <a [routerLink]=" ['./'] "
+            routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+            Home
+          </a>
+          <a [routerLink]=" ['./about'] "
+            routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+            About
+          </a>
+        </nav>
+      </div>
+    </header>
 
     <main>
       <router-outlet></router-outlet>
     </main>
 
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
     <footer>
-      <span>Angular Starter by <a [href]="github">@b3kNDev</a></span>
-      <div>
-        <a [href]="url">
-          <img [src]="tipe" width="25%">
-        </a>
-      </div>
+      <span>Illustrious Services by <a [href]="url">@b3kNDev</a></span><br />
+      <a [href]="github">@b3kN github</a>
     </footer>
   `
 })
 export class AppComponent implements OnInit {
   public name = 'Illustrious Online';
-  public tipe = 'assets/img/tipe.png';
-  public twitter = 'https://www.github.com/b3kN/illustrious-site';
-  public url = 'https://www.github.com/b3kN/illustrious-site';
+  public url = 'https://b3kndev.com';
+  public github = 'https://www.github.com/b3kN/illustrious-site';
   public showDevModule: boolean = environment.showDevModule;
 
   constructor(
     public appState: AppState
-  ) {}
+  ) { }
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
